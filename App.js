@@ -1,20 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { useFonts, Inter_400Regular, Inter_700Bold } from '@expo-google-fonts/inter';
+
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    "inter-regular": Inter_400Regular,
+    "inter-bold": Inter_700Bold
+  })
+
+  if (!fontsLoaded) {
+    return <ActivityIndicator />
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ImageBackground
+      source={require('./assets/light-bg.png')}
+      style={styles.background}
+    >
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  background: {
+    flex: 1
+  }
 });
